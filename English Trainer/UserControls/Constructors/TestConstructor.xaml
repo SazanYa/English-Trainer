@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="English_Trainer.TestConstructor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:English_Trainer"
+             mc:Ignorable="d"
+             Width="Auto" Height="Auto"
+             Loaded="UserControl_Loaded">
+    <Grid Margin="10 10 10 10" KeyUp="Grid_KeyUp">
+        <GroupBox Header="Test" FontSize="22">
+            <StackPanel>
+                <TextBox FontSize="20" materialDesign:HintAssist.Hint="Title" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" TextChanged="OnTestChanged"></TextBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel  Grid.ColumnSpan="2" Margin="0 10 0 0">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 2">
+                            <CheckBox IsChecked="{Binding IsReady}" Margin="-1 2 5 0" Checked="OnTestChanged" Unchecked="OnTestChanged"></CheckBox>
+                            <TextBlock Text="Is test ready? (can students see the test)" FontSize="16"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding CanUserSeeResult}" Margin="-1 2 5 0" Checked="OnTestChanged" Unchecked="OnTestChanged"></CheckBox>
+                            <TextBlock Text="Show the details of the passed test" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 5 0 0">
+                        <TextBlock Text="Level" VerticalAlignment="Center" FontSize="20" Margin="0 0 10 0" ></TextBlock>
+                        <ComboBox x:Name="questionWeightComboBox" FontSize="19" Text="{Binding Level}" Margin="0 0 30 0" SelectionChanged="OnTestChanged">
+                            <ComboBoxItem>A1</ComboBoxItem>
+                            <ComboBoxItem>A2</ComboBoxItem>
+                            <ComboBoxItem>B1</ComboBoxItem>
+                            <ComboBoxItem>B2</ComboBoxItem>
+                            <ComboBoxItem>C1</ComboBoxItem>
+                            <ComboBoxItem>C2</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="Total weight: "  FontSize="20"></TextBlock>
+                        <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TotalWeight}" FontSize="20"></TextBlock>
+                    </StackPanel>
+                    <Button Grid.Row="1" Grid.Column="3" Content="SAVE" HorizontalAlignment="Right" Margin="0 10 0 0" Style="{StaticResource MaterialDesignRaisedButton}" Click="SaveTestButton_Click"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="English_Trainer.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:English_Trainer"
+        mc:Ignorable="d"
+        Title="LoginWindow" 
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" WindowStyle="None"
+        ResizeMode="NoResize"
+        Height="293" Width="296.6">
+    <Grid Background="#FAFAFA" KeyUp="Grid_KeyUp">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Fill="Black" Height="64" Stroke="Black" StrokeThickness="0" MouseLeftButtonDown="RangeDragWindow_MouseLeftButtonDown"/>
+        <Button Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top"  Height="18" Width="18" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0" Background="Black" Margin="0 2 2 0" Click="ExitButton_Click">
+            <materialDesign:PackIcon Kind="WindowClose" Height="18" Width="18"/>
+        </Button>
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="OCR A Extended" FontSize="30" Foreground="White" Text="Sign in" MouseLeftButtonDown="RangeDragWindow_MouseLeftButtonDown"/>
+        <StackPanel  Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="15 30 5 0">
+            <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=logLoginTextBox, Path=BorderBrush}" VerticalAlignment="Center" Width="22" Height="22" Margin="0 0 5 0" />
+            <TextBox x:Name="logLoginTextBox" materialDesign:HintAssist.Hint="Username" Height="40" FontSize="22" FontFamily="OCR A Extended" Width="233" VerticalContentAlignment="Center" MaxLength="20" GotFocus="TextBox_GotFocus"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="15 20 5 0">
+            <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=logPasswordTextBox, Path=BorderBrush}" VerticalAlignment="Center" Width="22" Height="22" Margin="0 0 5 0" />
+            <PasswordBox Grid.Row="2" Grid.ColumnSpan="2" x:Name="logPasswordTextBox" materialDesign:HintAssist.Hint="Password" PasswordChar="*" FontSize="22" FontFamily="OCR A Extended" Height="40" Width="235" VerticalContentAlignment="Center" MaxLength="12" GotFocus="PasswordBox_GotFocus"></PasswordBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Margin="25 33 10 0">
+            <TextBlock Text="New user?" FontStyle="Italic" FontSize="14" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+            <TextBlock Text="Create your account" Cursor="Hand" Foreground="#FFE44545" FontStyle="Italic" FontSize="14" PreviewMouseLeftButtonDown="CreateAccountTextBlock_Click"></TextBlock>
+        </StackPanel>
+        <Button x:Name="loginButton" Grid.Row="3" Grid.Column="1" Margin="10,30,0,0" Height="42" Width="114" Content="LOGIN" FontFamily="OCR A Extended" Background="#1dabb7" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Template="{StaticResource btLoginTemplate}" Click="LoginButton_Click"/>
+    </Grid>
+</Window>

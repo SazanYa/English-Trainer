@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="English_Trainer.ResultTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:English_Trainer"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Background="White" Height="483" Width="612" Margin="1 1 0 0" MouseDown="StackPanel_MouseDown">
+        <DataGrid x:Name="resultTable" 
+                  MaxHeight="360" 
+                  AutoGenerateColumns="False" 
+                  CanUserResizeColumns="False"
+                  CanUserReorderColumns="False"
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False"
+                  SelectionUnit="FullRow" 
+                  SelectionMode="Single"
+                  SelectionChanged="ResultTable_SelectionChanged" 
+                  CellEditEnding="ResultTable_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Binding="{Binding TestTitle}" 
+                    IsReadOnly="True" 
+                    Header="Test"/>
+                <DataGridTextColumn 
+                    Binding="{Binding TestCreator}" 
+                    IsReadOnly="True"
+                    Header="Creator"/>
+                <DataGridTextColumn 
+                    Binding="{Binding Username}" 
+                    IsReadOnly="True"
+                    Header="User"/>
+                <DataGridTextColumn 
+                    Binding="{Binding Path=Date, StringFormat={}{0:MM/dd/yyyy}}" 
+                    IsReadOnly="True" 
+                    Header="Date"/>
+                <DataGridTextColumn 
+                    Binding="{Binding Mark}" 
+                    IsReadOnly="True" 
+                    Header="Mark" />
+                <materialDesign:MaterialDataGridTextColumn
+                    x:Name="commentColumn"
+                    Binding="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Comment"
+                    MaxLength="255"
+                    IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="deleteProgressButton" HorizontalAlignment="Left" Margin="10 10 0 0" IsEnabled="False" Click="DeleteProgressButton_Click">
+                <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"/>
+            </Button>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="commentButton" ToolTip="Add comment" Margin="0 10 10 0" IsEnabled="False" Click="AddCommentButton_Click">
+                    <materialDesign:PackIcon Kind="LeadPencil" Height="20" Width="20"/>
+                </Button>
+                <Button x:Name="detailsButton" Content="DETAILS" Margin="0 10 10 0" IsEnabled="False" Click="ShowDetailsButton_Click"></Button>
+            </StackPanel>
+        </Grid>
+        
+    </StackPanel>
+</UserControl>
